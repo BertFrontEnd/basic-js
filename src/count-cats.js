@@ -1,5 +1,7 @@
+const CustomError = require("../extensions/custom-error");
+
 module.exports = function countCats(matrix) {
-  if (matrix === []) return 0;
+    if (matrix === []) return 0;
   let count = 0;
   let simpleMatrix = matrix.toString().split(',');
   simpleMatrix.forEach(el => {
