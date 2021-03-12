@@ -2,7 +2,7 @@ const CustomError = require('../extensions/custom-error');
 
 module.exports = function repeater(str, options) {
   let outputStr = '';
-  let string = str.toString();
+  let string = String(str);
   let repeatTimes =
     typeof options.repeatTimes !== 'undefined' ? +options.repeatTimes : 1;
   let separator =
@@ -17,17 +17,14 @@ module.exports = function repeater(str, options) {
     typeof options.additionSeparator !== 'undefined'
       ? options.additionSeparator
       : '|';
-  console.log('string:', string);
-  console.log('repeatTimes:', repeatTimes);
-  console.log('separator:', separator);
-  console.log('addition:', addition);
-  console.log('additionRepeatTimes', additionRepeatTimes);
-  console.log('additionSeparator:', additionSeparator);
 
-  outputStr += (string + separator)
+  return (outputStr = (
+    string +
+    (addition + additionSeparator)
+      .repeat(additionRepeatTimes)
+      .slice(0, -additionSeparator.length) +
+    separator
+  )
     .repeat(repeatTimes)
-    .slice(0, -separator.length);
-  console.log(string);
-
-  return outputStr;
+    .slice(0, -separator.length));
 };
